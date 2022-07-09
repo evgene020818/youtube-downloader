@@ -10,14 +10,12 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use('/api', require('./routes/root'));
 
-if (process.env.NODE_ENV === 'production') {
-    // Serve any static files
-    app.use(express.static(path.join(__dirname, 'client/build')));
-    // Handle React routing, return all requests to React app
-    app.get('/', function (req, res) {
-        res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-    });
-}
+// Serve any static files
+app.use(express.static(path.join(__dirname, 'client/build')));
+// Handle React routing, return all requests to React app
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
 
 app.all('*', (req, res) => {
     res.json({ "error": "404 Not Found" });
