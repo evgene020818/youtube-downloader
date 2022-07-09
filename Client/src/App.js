@@ -35,6 +35,7 @@ function App() {
         headers: { 'Content-Type': 'application/json' }
       }
     ).catch((error) => {
+      console.log(error)
       setIsWaitingResponse(false);
       if (error.response.data) {
         setErrorMessage(error.response.data.message);
