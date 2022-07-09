@@ -6,9 +6,9 @@ const cors = require('cors');
 const corsOptions = require('./config/corsOptions');
 const PORT = process.env.PORT || 3500;
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(express.json());
-app.use('/api', require('./routes/root'));
+
 
 // Serve any static files
 app.use(express.static(path.join(__dirname, 'Client/build')));
@@ -16,6 +16,8 @@ app.use(express.static(path.join(__dirname, 'Client/build')));
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'Client/build', 'index.html'));
 });
+
+app.use('/api', require('./routes/root'));
 
 app.all('*', (req, res) => {
     res.json({ "error": "404 Not Found" });
