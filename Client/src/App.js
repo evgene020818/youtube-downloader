@@ -51,7 +51,6 @@ function App() {
     setIsWaitingResponse(false);
 
     if (err) {
-      console.log('Error has occured.');
       return;
     }
 
