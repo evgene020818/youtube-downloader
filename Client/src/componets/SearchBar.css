@@ -1,0 +1,52 @@
+.Search-Form {
+    display: table;
+    margin-top: 0.6em;
+}
+
+.Search-Cell {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.Search-Input {
+    padding: 5px 10px;
+    border-radius: 5px 0 0 5px;
+    border-style: solid;
+    border-width: 2px 0 2px 2px;
+    border-color: rgb(113, 222, 255);
+}
+
+.Search-Cell>input {
+    width: 100%;
+    outline: none;
+}
+
+.Search-Icon {
+    padding: 10px;
+    text-align: center;
+    vertical-align: bottom;
+}
+
+.Search-Button>button {
+    border-radius: 0px 5px 5px 0px;
+    background-color: rgb(113, 222, 255);
+    border: 2px solid rgb(113, 222, 255);
+}
+
+.Search-Button>button:hover {
+    background-color: rgb(11, 198, 255);
+    border: 2px solid rgb(11, 198, 255);
+    cursor: pointer;
+}
+
+.Search-Button>button:focus {
+    outline: none;
+}
+
+.Search-Button>button:active {
+    background-color: rgb(0, 176, 229);
+    border: 2px solid rgb(0, 176, 229);
+}

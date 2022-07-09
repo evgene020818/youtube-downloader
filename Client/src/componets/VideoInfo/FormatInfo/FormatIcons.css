@@ -1,0 +1,16 @@
+.Icon {
+    float: right;
+    padding-right: 10px;
+}
+
+.Dropdown-Icon {
+    color: rgb(113, 222, 255);
+}
+
+.No-Audio {
+    color: #fc4444;
+}
+
+.No-Video {
+    color: #54cff8;
+}

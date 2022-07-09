@@ -1,0 +1,25 @@
+.Channel-Info {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5em;
+}
+
+.Avatar {
+    width: 1.5em;
+    border-radius: 50%;
+}
+
+.Channel-Name {
+    margin-left: 0.5em;
+    font-size: 0.8em;
+    color: #565656;
+}
+
+.Channel-Name:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.Avatar:hover {
+    cursor: pointer;
+}

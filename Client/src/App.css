@@ -1,0 +1,77 @@
+.App {
+    width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.Title {
+    margin: 0;
+}
+
+.Description {
+    margin-top: 0.5em;
+    margin-bottom: 0.8em;
+}
+
+input,
+button {
+    font: inherit;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    border: none;
+}
+
+
+/* Video Details Styling */
+
+.Video {
+    display: flex;
+    align-content: flex-start;
+    align-items: flex-start;
+    margin-top: 2em;
+}
+
+.Video-Info {
+    text-align: left;
+    margin: 0;
+    padding: 0 0 0 1em;
+}
+
+.View-Count {
+    font-size: 0.7em;
+    color: rgb(101, 102, 102);
+    margin-top: 0.2em;
+}
+
+
+/* Spinner Style */
+
+@keyframes spining {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.Spin-Icon {
+    margin-top: 1em;
+    animation: spining 1.5s linear infinite;
+    color: rgb(11, 198, 255);
+}
+
+
+/* Messages Style */
+
+.Error-Message {
+    margin-top: 0.5em;
+    color: rgb(238, 5, 5);
+}
+
+.Info-Message {
+    margin-top: 0.5em;
+    color: gray;
+}
