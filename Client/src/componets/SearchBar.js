@@ -12,7 +12,6 @@ const SearchBar = ({handleSubmit, setVideoUrl}) => {
         <div className='Search-Cell Search-Input'>
           <input
             type="text"
-            defaultValue={'https://www.youtube.com/watch?v=MiTek_adqkc'}
             onChange={(e) => setVideoUrl(e.target.value)}
             autoComplete='off'
             placeholder='Enter a link to a video or video ID...'

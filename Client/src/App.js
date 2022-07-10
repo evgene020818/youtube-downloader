@@ -13,7 +13,7 @@ const BACKEND_URL = '/api/';
 
 
 function App() {
-  const [videoUrl, setVideoUrl] = useState('https://www.youtube.com/watch?v=MiTek_adqkc');
+  const [videoUrl, setVideoUrl] = useState('');
   const [videoData, setVideoData] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
   const [isWaitingResponse, setIsWaitingResponse] = useState(false);
@@ -29,10 +29,63 @@ function App() {
     setVideoData(null);
     setIsWaitingResponse(true);
 
-    const response = await axios.post(BACKEND_URL,
+    axios.post(BACKEND_URL,
       JSON.stringify({ url: videoUrl }),
       { headers: { 'Content-Type': 'application/json' } }
-    ).catch((error) => {
+    ).then((response)=> {
+      setIsWaitingResponse(false);
+      if (response.status === 204) {
+        setInfoMessage('No videos found.');
+        return;
+      }
+  
+      let videoDetails = response.data;
+      videoDetails.url = currentUrl;
+  
+      // Searching for thumbnail with biggest resolution
+      let thumbnailResolution = 0;
+      let maxThumbnail;
+      videoDetails.thumbnails.forEach((currThumbnail) => {
+        if (currThumbnail.width * currThumbnail.height > thumbnailResolution)
+          maxThumbnail = currThumbnail;
+      });
+  
+      videoDetails.thumbnail = maxThumbnail;
+  
+      if (videoDetails.title.length > 50) {
+        videoDetails.title = videoDetails.title.substr(0, 50) + '...';
+      }
+  
+      let videoAudioGroup = [];
+      let videoGroup = [];
+      let audioGroup = [];
+      videoDetails.formats.forEach((f) => {
+        f.hasVideo && f.hasAudio ?
+          videoAudioGroup.push(f) :
+          f.hasVideo ?
+            videoGroup.push(f) :
+            audioGroup.push(f);
+      })
+  
+      const comp = ( a, b ) => {
+        let aRes = a.width + a.height;
+        let bRes = b.width + b.height;
+        if (aRes > bRes) {
+          return -1;
+        }
+        if (aRes < bRes) {
+          return 1;
+        }
+        return 0;
+      }
+  
+      videoAudioGroup.sort(comp);
+      videoGroup.sort(comp);
+  
+      videoDetails.formats = [...videoAudioGroup, ...videoGroup, ...audioGroup];
+  
+      setVideoData(videoDetails);
+    }).catch((error) => {
       err = error;
       setIsWaitingResponse(false);
 
@@ -43,64 +96,7 @@ function App() {
 
       setErrorMessage("Oops! Something went wrong. Please try again later.");
     });
-    setIsWaitingResponse(false);
-    
-    if (err) {
-      return;
-    }
-
-    if (response.status === 204) {
-      setInfoMessage('No videos found.');
-      return;
-    }
-
-    let videoDetails = response.data;
-    videoDetails.url = currentUrl;
-
-    // Searching for thumbnail with biggest resolution
-    let thumbnailResolution = 0;
-    let maxThumbnail;
-    videoDetails.thumbnails.forEach((currThumbnail) => {
-      if (currThumbnail.width * currThumbnail.height > thumbnailResolution)
-        maxThumbnail = currThumbnail;
-    });
-
-    videoDetails.thumbnail = maxThumbnail;
-
-    if (videoDetails.title.length > 50) {
-      videoDetails.title = videoDetails.title.substr(0, 50) + '...';
-    }
-
-    let videoAudioGroup = [];
-    let videoGroup = [];
-    let audioGroup = [];
-    videoDetails.formats.forEach((f) => {
-      f.hasVideo && f.hasAudio ?
-        videoAudioGroup.push(f) :
-        f.hasVideo ?
-          videoGroup.push(f) :
-          audioGroup.push(f);
-    })
-
-    const comp = ( a, b ) => {
-      let aRes = a.width + a.height;
-      let bRes = b.width + b.height;
-      if (aRes > bRes) {
-        return -1;
-      }
-      if (aRes < bRes) {
-        return 1;
-      }
-      return 0;
-    }
-
-    videoAudioGroup.sort(comp);
-    videoGroup.sort(comp);
-
-    videoDetails.formats = [...videoAudioGroup, ...videoGroup, ...audioGroup];
-
-    setVideoData(videoDetails);
-  }
+}
 
   const openNewWindow = (url) => {
     const newWindow = window.open(url);
