@@ -6,7 +6,7 @@ Front-end consists of a couple of inputs, which are divided into React component
 
 Here is a demo on [Heroku](https://www.heroku.com/): [YouTube Downloader](https://youtube-downloader-8854.herokuapp.com/)
 
-##Try it yourself
+## Try it yourself
 - Clone the repository and open root folder
 - Install back-end dependencies: `npm install`
 - Go to Client folder and install front-end dependencies: `cd Client && npm install`
