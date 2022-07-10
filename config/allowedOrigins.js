@@ -1,5 +1,5 @@
 const allowedOrigins = [
-    'https://evgene-youtube-downloader-1.herokuapp.com',
+    'https://youtube-downloader-8854.herokuapp.com',
 ];
 
 module.exports = allowedOrigins;
