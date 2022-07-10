@@ -31,25 +31,20 @@ function App() {
 
     const response = await axios.post(BACKEND_URL,
       JSON.stringify({ url: videoUrl }),
-      {
-        headers: { 'Content-Type': 'application/json' }
-      }
+      { headers: { 'Content-Type': 'application/json' } }
     ).catch((error) => {
-      console.log(error)
+      err = error;
       setIsWaitingResponse(false);
-      if (error.response.data) {
-        setErrorMessage(error.response.data.message);
-        return;
-      } else if (error.code === "ERR_NETWORK") {
-        setErrorMessage("Oops! Couldn't connect to the server. Please try again later.")
+
+      if (error.code === "ERR_NETWORK") {
+        setErrorMessage("Oops! Couldn't connect to the server. Please try again later.");
         return;
       }
-      setErrorMessage("Oops! Something went wrong. Please try again later.")
-      err = error;
+
+      setErrorMessage("Oops! Something went wrong. Please try again later.");
     });
-
     setIsWaitingResponse(false);
-
+    
     if (err) {
       return;
     }
