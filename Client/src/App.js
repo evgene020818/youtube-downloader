@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import axios from './api/axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRotate } from '@fortawesome/free-solid-svg-icons';
+import { faRotate, faDownload } from '@fortawesome/free-solid-svg-icons';
 import FormatsMenu from './componets/VideoInfo/FormatsMenu';
 import Thumbnail from './componets/VideoInfo/Thumbnail';
 import VideoTitle from './componets/VideoInfo/VideoTitle';

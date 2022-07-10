@@ -14,8 +14,9 @@ const SearchBar = ({handleSubmit, setVideoUrl}) => {
             type="text"
             onChange={(e) => setVideoUrl(e.target.value)}
             autoComplete='off'
-            placeholder='Enter a link to a video or video ID...'
+            placeholder='Enter a link to a video or video id...'
             required
+            autoFocus
           />
         </div>
         <div className="Search-Cell Search-Button">
