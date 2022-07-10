@@ -14,7 +14,7 @@ const SearchBar = ({handleSubmit, setVideoUrl}) => {
             type="text"
             onChange={(e) => setVideoUrl(e.target.value)}
             autoComplete='off'
-            placeholder='Enter a link to a video or video id...'
+            placeholder='Enter a video url or video id...'
             required
             autoFocus
           />
