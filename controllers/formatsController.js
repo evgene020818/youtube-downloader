@@ -5,6 +5,8 @@ const getAllFormats = async (req, res) => {
         return res.status(400).json({ "message": 'Url required' });
     }
     const url = req.body.url;
+    let reqDisp = JSON.stringify(req.headers);
+    console.log(reqDisp);
     try {
         const videoInfo = await ytdl.getInfo(url);
         
